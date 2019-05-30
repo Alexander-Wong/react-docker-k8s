@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  server:
+    build: .
+    image: my-server
+    ports:
+      - "5000:8080"
+    depends_on:
+      - redis
+    networks:
+      - redis
+      - backend   
+  redis:
+    image: redis
+    ports:
+        - "6379:6379"
+    networks:
+      - redis    
+networks:
+  frontend:
+  backend:
+  redis:  
